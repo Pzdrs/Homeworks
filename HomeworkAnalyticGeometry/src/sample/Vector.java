@@ -8,7 +8,7 @@ public class Vector {
         this.p2 = p2;
 
         this.directional = new Point(p2.getX() - p1.getX(), p2.getY() - p1.getY());
-        this.normal = new Point(-(p2.getY() - p1.getY()), p2.getX() - p1.getX());
+        this.normal = new Point(- (p2.getY() - p1.getY()), p2.getX() - p1.getX());
     }
 
     public Point getNormal() {

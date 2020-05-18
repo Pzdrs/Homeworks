@@ -1,24 +1,29 @@
 package sample;
 
 public class Model {
-    private View view;
-    private double aX, aY, bX, bY;
+    private Line line, optionalLine;
     private Point a, b;
-    private Vector v;
 
-    public Model(Controller controller, double aX, double aY, double bX, double bY) {
-        this.view = new View(this, controller);
+    public Model(Controller controller, Point a, Point b) {
+        this.a = a;
+        this.b = b;
 
-        this.aX = aX;
-        this.aY = aY;
-        this.bX = bX;
-        this.bY = bY;
+        this.line = new Line(a, b);
 
-        this.a = new Point(aX, aY);
-        this.b = new Point(bX, bY);
-        this.v = new Vector(a, b);
+        controller.getGeneral().setText(line.getGeneralExpression());
+        controller.getParametric().setText(line.getParametricExpression());
+    }
 
-        view.both();
+    public Model(Controller controller, Point a, Point b, Line optionalLine) {
+        this.a = a;
+        this.b = b;
+        this.optionalLine = optionalLine;
+
+        this.line = new Line(a, b);
+
+        controller.getGeneral().setText(line.getGeneralExpression());
+        controller.getParametric().setText(line.getParametricExpression());
+        controller.getRelativePosition().setText(line.getRelativePosition(optionalLine));
     }
 
     public Point getA() {
@@ -27,9 +32,5 @@ public class Model {
 
     public Point getB() {
         return b;
-    }
-
-    public Vector getV() {
-        return v;
     }
 }
